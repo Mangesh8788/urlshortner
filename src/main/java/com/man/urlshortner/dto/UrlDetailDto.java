@@ -7,5 +7,8 @@ import lombok.Setter;
 @Setter
 public class UrlDetailDto {
 
+	private int id;
 	private String url;
+	private String shortCode;
+	private String shortUrl;
 }

@@ -19,7 +19,7 @@ public class UrlShortnerController {
 	private UrlDetailService urlDetailService;
 
 	@PostMapping
-	public ResponseEntity<String> createShortUrl(
+	public ResponseEntity<UrlDetailDto> createShortUrl(
 			@RequestBody UrlDetailDto url) {
 		return RestResponseConverterUtil.success(urlDetailService.create(url));
 	}

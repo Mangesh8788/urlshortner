@@ -8,4 +8,5 @@ import com.man.urlshortner.model.UrlDetail;
 @Repository
 public interface UrlDetailRepository extends JpaRepository<UrlDetail, Integer> {
 
+	UrlDetail findByShortCodeForUrl(String shortCode);
 }
