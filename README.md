@@ -76,4 +76,11 @@ You can access following API endpoints at http://localhost:8080
     "message": null\
 }
 
-
+## Future Enhancements / Known Issues
+- Haven't implemented Front-end application.
+- Add user specific functionality like :
+  - Create user account.
+  - Login functionality.
+  - User specfic short url creation.
+- Create short url for multiple urls by using excel file.
+- Check for duplicate url.
