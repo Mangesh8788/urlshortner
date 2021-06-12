@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.man.urlshortner.constant.UrlStatusConstant;
 import com.man.urlshortner.dto.UrlDetailDto;
 import com.man.urlshortner.helper.UrlDetailServiceHelper;
 import com.man.urlshortner.helper.UrlShortCodeAndUrlValidatorHelper;
@@ -24,7 +25,10 @@ public class UrlDetailServiceImpl implements UrlDetailService {
 	public UrlDetailDto create(UrlDetailDto obj) {
 		UrlDetail urlDetail = null;
 
-		// Url Validated and set
+		// Common data validation
+		urlDetailServiceHelper.urlCommonDataValidator(obj);
+
+		// Url Validator
 		obj.setUrl(urlShortCodeAndValidator.validateInputUrl(obj.getUrl()));
 
 		// Generate Short Code
@@ -60,7 +64,8 @@ public class UrlDetailServiceImpl implements UrlDetailService {
 	@Override
 	public RedirectView redirectShortUrlToActualUrl(String shortCode) {
 		UrlDetail urlDetail = urlDetailRepository
-				.findByShortCodeForUrl(shortCode);
+				.findByShortCodeForUrlAndUrlStatus(shortCode,
+						UrlStatusConstant.ACTIVE);
 		// Validate the url
 		urlDetailServiceHelper.urlRedirectionValidatior(urlDetail);
 		return new RedirectView(urlDetail.getActualUrl());

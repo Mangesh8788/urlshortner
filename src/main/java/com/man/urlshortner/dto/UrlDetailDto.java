@@ -1,5 +1,7 @@
 package com.man.urlshortner.dto;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,4 +13,5 @@ public class UrlDetailDto {
 	private String url;
 	private String shortCode;
 	private String shortUrl;
+	private Date expiryDate;
 }

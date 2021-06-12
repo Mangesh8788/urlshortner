@@ -1,5 +1,17 @@
-{"properties": [{
-  "name": "base.url",
-  "type": "java.lang.String",
-  "description": "A description for 'base.url'"
-}]}
+{"properties": [
+  {
+    "name": "base.url",
+    "type": "java.lang.String",
+    "description": "A description for 'base.url'"
+  },
+  {
+    "name": "cron.for.url.status.update",
+    "type": "java.lang.String",
+    "description": "A description for 'cron.for.url.status.update'"
+  },
+  {
+    "name": "cron.job.control.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'cron.job.control.enabled'"
+  }
+]}

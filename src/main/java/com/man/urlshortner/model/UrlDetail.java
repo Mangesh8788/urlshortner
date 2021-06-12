@@ -4,7 +4,11 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
+
+import com.man.urlshortner.constant.UrlStatusConstant;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +17,7 @@ import lombok.Setter;
 @Table(name = UrlDetail.TABLE_NAME)
 @Getter
 @Setter
-public class UrlDetail extends InactivableEntity {
+public class UrlDetail extends AuditableEntiy {
 
 	public static final String TABLE_NAME = "tab_url_detail";
 	public static final String ACTUAL_URL = "actual_url";
@@ -21,6 +25,7 @@ public class UrlDetail extends InactivableEntity {
 	public static final String URL_EXPIRY_DATE = "url_expiry_date";
 	public static final String TOTAL_COUNT_OF_URL_ACCESS_ALLOWED = "total_count_of_url_accessed_allowed";
 	public static final String URL_ACCESSED_COUNT = "url_accessed_count";
+	public static final String URL_STATUS = "url_status";
 
 	@Column(name = ACTUAL_URL, columnDefinition = "varchar(1000)")
 	private String actualUrl;
@@ -31,10 +36,6 @@ public class UrlDetail extends InactivableEntity {
 	@Column(name = URL_EXPIRY_DATE)
 	private Date urlExpiryDate;
 
-	@Column(name = TOTAL_COUNT_OF_URL_ACCESS_ALLOWED)
-	private int numberOfUrlAccessAllowed;
-
-	@Column(name = URL_ACCESSED_COUNT)
-	private int urlAccessedCount;
-
+	@Enumerated(EnumType.STRING)
+	private UrlStatusConstant urlStatus;
 }
