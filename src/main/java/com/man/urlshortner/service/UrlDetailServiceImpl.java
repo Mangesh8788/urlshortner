@@ -1,11 +1,14 @@
 package com.man.urlshortner.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.man.urlshortner.constant.UrlStatusConstant;
 import com.man.urlshortner.dto.UrlDetailDto;
+import com.man.urlshortner.helper.ApplicationProperties;
 import com.man.urlshortner.helper.UrlDetailServiceHelper;
 import com.man.urlshortner.helper.UrlShortCodeAndUrlValidatorHelper;
 import com.man.urlshortner.model.UrlDetail;
@@ -20,6 +23,8 @@ public class UrlDetailServiceImpl implements UrlDetailService {
 	private UrlDetailServiceHelper urlDetailServiceHelper;
 	@Autowired
 	private UrlDetailRepository urlDetailRepository;
+	@Autowired
+	private ApplicationProperties applicationProperties;
 
 	@Override
 	public UrlDetailDto create(UrlDetailDto obj) {
@@ -69,6 +74,17 @@ public class UrlDetailServiceImpl implements UrlDetailService {
 		// Validate the url
 		urlDetailServiceHelper.urlRedirectionValidatior(urlDetail);
 		return new RedirectView(urlDetail.getActualUrl());
+	}
+
+	@Override
+	public List<UrlDetail> getAllActiveUrlDetails() {
+
+		List<UrlDetail> urlDetailList = urlDetailRepository
+				.findAllByUrlStatus(UrlStatusConstant.ACTIVE);
+		urlDetailList.forEach(
+				e -> e.setShortUrl(applicationProperties.getBaseUrlForShortUrl()
+						+ e.getShortCodeForUrl()));
+		return urlDetailList;
 	}
 
 }

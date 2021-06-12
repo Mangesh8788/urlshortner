@@ -1,5 +1,7 @@
 package com.man.urlshortner.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +20,7 @@ public interface UrlDetailRepository extends JpaRepository<UrlDetail, Integer> {
 	UrlDetail findByShortCodeForUrl(String shortCode);
 	UrlDetail findByShortCodeForUrlAndUrlStatus(String shortCode,
 			UrlStatusConstant urlStatus);
+	List<UrlDetail> findAllByUrlStatus(UrlStatusConstant urlStatus);
 
 	String updateUrlStatus = "UPDATE tab_url_detail tud SET tud.url_status=:STATUS WHERE tud.url_expiry_date < CURDATE()";
 	@Modifying

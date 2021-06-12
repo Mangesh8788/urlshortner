@@ -3,7 +3,6 @@ package com.man.urlshortner.helper;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -15,16 +14,16 @@ import com.man.urlshortner.repository.UrlDetailRepository;
 @Component
 public class UrlDetailServiceHelper {
 	@Autowired
-	private UrlDetailRepository urlDetailRepo;
-	@Value("${base.url}")
-	private String baseUrl;
+	private UrlDetailRepository urlDetailRepo;;
 	@Autowired
 	private CommonHelper commonHelper;
+	@Autowired
+	private ApplicationProperties applicationProperties;
 
 	public UrlDetailDto convertEntityToDto(UrlDetail urlDetail,
 			UrlDetailDto obj) {
 		obj.setId(urlDetail.getId());
-		obj.setShortUrl(baseUrl + obj.getShortCode());
+		obj.setShortUrl(applicationProperties.getBaseUrlForShortUrl() + obj.getShortCode());
 		return obj;
 	}
 

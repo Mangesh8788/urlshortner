@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.man.urlshortner.constant.UrlStatusConstant;
 
@@ -38,4 +39,7 @@ public class UrlDetail extends AuditableEntiy {
 
 	@Enumerated(EnumType.STRING)
 	private UrlStatusConstant urlStatus;
+
+	@Transient
+	private String shortUrl;
 }
