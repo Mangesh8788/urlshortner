@@ -6,6 +6,7 @@ A url shortener is a tool that creates a short, unique URL that will redirect to
 ## Mandatory Requirements
 - Design and implement an api for short url creation.
 - Implement forwarding of short url to original url.
+- Cron Job to change the status of url record to expired after the expiry date of short url.
 
 ## Dependencies
 - spring-boot-starter-web (Spring boot framework)
